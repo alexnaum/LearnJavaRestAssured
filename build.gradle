@@ -13,11 +13,18 @@ dependencies {
     //testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     //testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testImplementation 'io.rest-assured:rest-assured:4.4.0'
-    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation 'io.rest-assured:json-path:4.4.0'
+    testImplementation 'io.rest-assured:json-schema-validator:4.4.0'
     testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0'
 
 }
 
 test {
-    useJUnitPlatform()
+    //useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true // Log any output that the tests write to stdout or stderr
+        events "passed", "skipped", "failed" // Log the execution of each test and its result
+    }
 }
