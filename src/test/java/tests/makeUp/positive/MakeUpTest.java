@@ -15,6 +15,7 @@ import tests.makeUp.BaseTest;
 import java.util.Map;
 
 import static io.restassured.http.ContentType.JSON;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.core.Is.is;
 
 public class MakeUpTest extends BaseTest {
@@ -63,5 +64,12 @@ public class MakeUpTest extends BaseTest {
         ObjectMapper mapper = new ObjectMapper();
         makeUpDto thing = mapper.readValue(json, makeUpDto.class);
         System.out.println(json);
+    }
+
+    @Test
+    public void validateJsonSchema(){
+        RestAssured.given().param("brand","pure anada").param("product_type", "mascara").
+                 when().get().then().assertThat()
+                .body(matchesJsonSchemaInClasspath("JsonExample.json"));
     }
 }
