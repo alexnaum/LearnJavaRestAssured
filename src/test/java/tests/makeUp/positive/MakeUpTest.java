@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import tests.makeUp.BaseTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.http.ContentType.JSON;
@@ -64,11 +65,12 @@ public class MakeUpTest extends BaseTest {
     @Test
     public void validateJsonSchemaFromTwoRequest(){
         var firstResponce = RestAssured.given().param("brand","pure anada").
-                when().get().then().extract().body().jsonPath();
-        //var secondResponce = RestAssured.given().param("product_type", "mascara").
-          //      when().get().body().jsonPath().getObject("brand",makeUpDto.class);
-
-        System.out.println(firstResponce.getObject("brand",MakeUpTest.class));
+                when().get().then().extract().body().jsonPath();//.getObject("id",MakeUpTest.class);
+        var secondResponce = RestAssured.given().param("product_type", "mascara").
+                when().get().body().jsonPath().getObject("id",makeUpDto.class);
+        List<Integer> ids = firstResponce.get("id");
+        System.out.println(ids);
+        System.out.println(secondResponce);
 
         //Assert.assertEquals(firstResponce.then().extract().statusCode(), secondResponce.then().extract().statusCode());
     }
