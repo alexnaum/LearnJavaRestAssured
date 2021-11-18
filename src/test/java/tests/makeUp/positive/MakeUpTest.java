@@ -64,10 +64,12 @@ public class MakeUpTest extends BaseTest {
     @Test
     public void validateJsonSchemaFromTwoRequest(){
         var firstResponce = RestAssured.given().param("brand","pure anada").
-                when().get();
-        var secondResponce = RestAssured.given().param("product_type", "mascara").
-                when().get();
+                when().get().then().extract().body().jsonPath();
+        //var secondResponce = RestAssured.given().param("product_type", "mascara").
+          //      when().get().body().jsonPath().getObject("brand",makeUpDto.class);
 
-        Assert.assertEquals(firstResponce.then().extract().statusCode(), secondResponce.then().extract().statusCode());
+        System.out.println(firstResponce.getObject("brand",MakeUpTest.class));
+
+        //Assert.assertEquals(firstResponce.then().extract().statusCode(), secondResponce.then().extract().statusCode());
     }
 }
