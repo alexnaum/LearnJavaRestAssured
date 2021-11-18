@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "price_sign": {
+          "type": "null"
+        },
+        "currency": {
+          "type": "null"
+        },
+        "image_link": {
+          "type": "string"
+        },
+        "product_link": {
+          "type": "string"
+        },
+        "website_link": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "category": {
+          "type": "null"
+        },
+        "product_type": {
+          "type": "string"
+        },
+        "tag_list": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "product_api_url": {
+          "type": "string"
+        },
+        "api_featured_image": {
+          "type": "string"
+        },
+        "product_colors": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "hex_value": {
+                  "type": "string"
+                },
+                "colour_name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "hex_value",
+                "colour_name"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "hex_value": {
+                  "type": "string"
+                },
+                "colour_name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "hex_value",
+                "colour_name"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "brand",
+        "name",
+        "price",
+        "price_sign",
+        "currency",
+        "image_link",
+        "product_link",
+        "website_link",
+        "description",
+        "rating",
+        "category",
+        "product_type",
+        "tag_list",
+        "created_at",
+        "updated_at",
+        "product_api_url",
+        "api_featured_image",
+        "product_colors"
+      ]
+    }
+  ]
+}

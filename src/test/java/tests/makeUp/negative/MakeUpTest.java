@@ -22,4 +22,11 @@ public class MakeUpTest extends BaseTest {
         RestAssured.given().when().get("/asda").
                 then().assertThat().statusCode(404);
     }
+
+    @Test
+    public void setIncorrectProtocol() {
+        RestAssured.given().when().post().
+                then().assertThat().statusCode(422)
+                .and().body("error", is("Unprocessable Entity"));
+    }
 }

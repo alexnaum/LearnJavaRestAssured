@@ -4,13 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dto.makeUpDto;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import tests.makeUp.BaseTest;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
@@ -57,19 +55,19 @@ public class MakeUpTest extends BaseTest {
     }
 
     @Test
-    public void getItemsByCategoryBrands() throws JsonProcessingException {
-        makeUpDto newThing = new makeUpDto();
-        //newThing.
-        String json = RestAssured.get().asString();
-        ObjectMapper mapper = new ObjectMapper();
-        makeUpDto thing = mapper.readValue(json, makeUpDto.class);
-        System.out.println(json);
-    }
-
-    @Test
     public void validateJsonSchema(){
         RestAssured.given().param("brand","pure anada").param("product_type", "mascara").
                  when().get().then().assertThat()
-                .body(matchesJsonSchemaInClasspath("JsonExample.json"));
+                .body(matchesJsonSchemaInClasspath("JsonSchema.json"));
+    }
+
+    @Test
+    public void validateJsonSchemaFromTwoRequest(){
+        var firstResponce = RestAssured.given().param("brand","pure anada").
+                when().get();
+        var secondResponce = RestAssured.given().param("product_type", "mascara").
+                when().get();
+
+        Assert.assertEquals(firstResponce.then().extract().statusCode(), secondResponce.then().extract().statusCode());
     }
 }
